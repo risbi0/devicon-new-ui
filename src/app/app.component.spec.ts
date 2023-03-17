@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { TextFilterPipe } from './pipes/text-filter.pipe';
 import { TagFilterPipe } from './pipes/tag-filter.pipe';
 
-describe('App Component', () => {
+describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, FormsModule],
