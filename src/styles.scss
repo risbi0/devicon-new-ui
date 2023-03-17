@@ -1,0 +1,50 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.pos-inherit {
+  position: inherit;
+}
+
+.display-initial {
+  display: initial;
+}
+
+#title {
+  font-family: 'Damion', cursive;
+}
+
+#selected-icon {
+  color: white;
+
+  i {
+    @apply  text-[192px] sm:text-[144px];
+
+    &.devicon-opensuse-plain {
+      @apply text-[142px] sm:text-[116px];
+    }
+
+    &.devicon-twitter-original {
+      @apply text-[164px] sm:text-[124px];
+    }
+  }
+
+  img {
+    @apply w-48 h-48 sm:h-36 sm:w-36;
+  }
+}
+
+main {
+  .devicon-opensuse-plain {
+    @apply flex items-center text-[164px] sm:text-[87px];
+  }
+
+  .devicon-twitter-original {
+    @apply flex items-center text-[172px] sm:text-[104px];
+  }
+}
+
+.copy:active {
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: '0.2s';
+}
