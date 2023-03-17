@@ -16,31 +16,13 @@
       </div>
     <p class="text-center">For CSS class use, paste the code in the &lt;head&gt; of your HTML</p>
     <div class="code-snippet relative p-4 pr-10 mt-4 rounded w-auto">
-      <button (click)="copyToClipBoard(selectedIconCode)" class="material-symbols-outlined copy rounded-full absolute right-2 top-4 w-7 text-xl hover:cursor-pointer hover:hover-text-color">content_copy</button>
-      <code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"&gt;</code>
+      <button (click)="copyToClipBoard(cssSetup)" class="material-symbols-outlined copy rounded-full absolute right-2 top-4 w-7 text-xl hover:cursor-pointer hover:hover-text-color">content_copy</button>
+      <code>{{ cssSetup }}</code>
     </div>
   </header>
 
-  <main class="flex flex-col justify-center items-center">
-    <!-- text search -->
-    <div class="input-group justify-center items-center my-6">
-      <input type="text" [(ngModel)]="textSearch" placeholder="Search icon" class="input input-bordered w-60 hover-color">
-      <button id="search-icon" class="material-symbols-outlined btn btn-square text-2xl">search</button>
-    </div>
-    <!-- tag search -->
-    <select [(ngModel)]="tagSearch" (ngModelChange)="handleDropdownDisplay()" class="select select-sm select-bordered w-36 hover-color">
-      <option hidden>Filter by tag</option>
-      <option>None</option>
-      <option *ngFor="let tag of tagChoices">{{ tag }}</option>
-    </select>
-    <!-- icons -->
-    <div class="flex flex-wrap justify-center mt-4 sm:mt-0">
-      <div *ngFor="let icon of icons | textFilter: textSearch | tagFilter: tagSearch" (click)="showDetails(icon)" id="grid-box" class="flex flex-col items-center relative rounded-xl p-2 pb-4 m-2 w-44 h-44 transition-all duration-200 hover:cursor-pointer hover:hover-color sm:p-6 sm:pb-12 sm:m-6 sm:w-auto sm:h-auto">
-        <i class="text-9xl transition-all duration-200 sm:w-32 sm:h-32 devicon-{{ icon.name }}-{{ icon.css[0] }}" [attr.icon-color]="icon.color"></i>
-        <p class="absolute bottom-3 w-max font-semibold text-base sm:mt-4">{{ icon.title }}</p>
-      </div>
-    </div>
-  </main>
+  <app-icon-display></app-icon-display>
+  <app-icon-detail></app-icon-detail>
 
   <footer class="footer footer-center p-10 bg-base-300 text-base-content rounded">
     <div class="w-auto sm:w-[700px]">
@@ -51,51 +33,6 @@
       <p class="mt-2">Copyright © 2015 by <a href="https://github.com/konpa" target="_blank" class="underline">Konpa</a></p>
     </div>
   </footer>
-
-  <div *ngIf="displayDetails" (click)="displayDetails = false" class="fixed top-0 bg-[rgba(0,0,0,0.5)] w-full h-full">
-    <div (click)="$event.stopPropagation()" id="details" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full p-8 pt-6 theme sm:w-[60rem] sm:h-max sm:rounded">
-      <button (click)="displayDetails = false" class="material-symbols-outlined btn btn-sm btn-circle absolute pt-[1px] pr-[1px] top-4 left-3 sm:left-auto sm:right-4">close</button>
-      <!-- name -->
-      <h1 class="text-center font-bold text-2xl mb-4">{{ selectedIconTitle }}</h1>
-      <div class="flex flex-col sm:flex-row">
-        <div class="flex flex-col items-center sm:mr-4">
-          <!-- icon -->
-          <div class="flex justify-center items-center relative my-2 w-64 h-64 sm:w-auto sm:h-auto">
-            <img src="./assets/checkerboard.png" alt="checkerboard" class="absolute top-0 w-64 brightness-75">
-            <div id="selected-icon" class="flex justify-center items-center z-10 pos-inherit w-64 h-64 sm:h-48 sm:w-48" [innerHTML]="selectedIconCode"></div>
-          </div>
-          <!-- icon type -->
-          <div class="btn-group mt-4 flex justify-center">
-            <button (click)="changeIconType('css')" class="btn" [ngClass]="{'btn-active': cssSelected}">CSS</button>
-            <button (click)="changeIconType('svg')" class="btn" [ngClass]="{'btn-active': !cssSelected}">SVG</button>
-          </div>
-        </div>
-
-        <div class="flex flex-col w-full mt-2 sm:mt-0 sm:ml-4">
-          <!-- icon variant -->
-          <label *ngFor="let variant of selectedIconVariants | keyvalue" (click)="changeVariant(variant.key)" for="{{ variant.key }}" class="flex justify-center capitalize w-max my-2 hover:cursor-pointer">
-            <input type="radio" name="icon-choice" id="{{ variant.key }}" class="radio mr-4" [checked]="variant.key == selectedIconVariant" [disabled]="disableTypeChoices"/>
-            {{ variant.key.replace('-', ' ') }}
-          </label>
-          <!-- color -->
-          <label (click)="toggleColor()" *ngIf="cssSelected" for="color" class="flex justify-center w-max my-2">
-            <input type="checkbox" name="color" class="toggle mr-4" [checked]="toggleColorSwitch"/>
-            Colored
-          </label>
-          <!-- wordmark -->
-          <label (click)="toggleWordmark()" for="wordmark" class="flex justify-center w-max my-2 {{ !selectedIconVariants[selectedIconVariant] ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer' }}">
-            <input type="checkbox" name="wordmark" class="toggle mr-4" [checked]="toggleWordmarkSwitch" [disabled]="!selectedIconVariants[selectedIconVariant]"/>
-            Wordmark
-          </label>
-          <!-- code snippet -->
-          <div class="code-snippet relative w-auto p-4 mt-4 rounded">
-            <button (click)="copyToClipBoard(selectedIconCode)" class="material-symbols-outlined copy rounded-full absolute right-2 top-4 w-7 text-xl hover:cursor-pointer hover:hover-text-color">content_copy</button>
-            <code>{{ selectedIconCode }}</code>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="fixed top-0 bottom-0 w-screen h-screen pointer-events-none">
     <div (click)="toggleTheme()" id="theme-symbol" class="material-symbols-outlined absolute top-2 right-2 sm:right-6 w-12 h-12 btn rounded-full text-3xl border-none pointer-events-auto theme hover:hover-color" #themeSymbol>{{ themeMode }}</div>
