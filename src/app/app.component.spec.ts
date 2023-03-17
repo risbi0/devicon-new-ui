@@ -28,6 +28,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('#title')?.textContent?.split(' ')[0]).toContain('Devicon');
+    expect(compiled.querySelector('#title')?.textContent?.split(' ')).toContain('Devicon');
   });
 });
