@@ -9,18 +9,9 @@ import { IconDisplayComponent } from './icon-display/icon-display.component';
 import { IconDetailComponent } from './icon-detail/icon-detail.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    IconDisplayComponent,
-    IconDetailComponent,
-    TextFilterPipe,
-    TagFilterPipe
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule
-  ],
+  declarations: [AppComponent, IconDisplayComponent, IconDetailComponent, TextFilterPipe, TagFilterPipe],
+  imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

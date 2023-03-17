@@ -12,8 +12,7 @@ describe('IconDisplayComponent', () => {
     await TestBed.configureTestingModule({
       imports: [FormsModule],
       declarations: [IconDisplayComponent, TextFilterPipe, TagFilterPipe]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(IconDisplayComponent);
     component = fixture.componentInstance;

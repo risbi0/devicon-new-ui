@@ -14,7 +14,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, FormsModule],
       declarations: [AppComponent, IconDisplayComponent, IconDetailComponent, TextFilterPipe, TagFilterPipe],
-      teardown: { destroyAfterEach: false },
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
 
@@ -28,8 +28,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(
-      compiled.querySelector('#title')?.textContent?.split(' ')[0]
-    ).toContain('Devicon');
+    expect(compiled.querySelector('#title')?.textContent?.split(' ')[0]).toContain('Devicon');
   });
 });

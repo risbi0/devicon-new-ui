@@ -1,40 +1,90 @@
-<div *ngIf="displayDetails" (click)="displayDetails = false" class="fixed top-0 bg-[rgba(0,0,0,0.5)] w-full h-full">
-  <div (click)="$event.stopPropagation()" id="details" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full p-8 pt-6 theme sm:w-[60rem] sm:h-max sm:rounded">
-    <button (click)="displayDetails = false" class="material-symbols-outlined btn btn-sm btn-circle absolute pt-[1px] pr-[1px] top-4 left-3 sm:left-auto sm:right-4">close</button>
+<div
+  *ngIf="displayDetails"
+  (click)="displayDetails = false"
+  class="fixed top-0 bg-[rgba(0,0,0,0.5)] w-full h-full"
+>
+  <div
+    (click)="$event.stopPropagation()"
+    id="details"
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full p-8 pt-6 theme sm:w-[60rem] sm:h-max sm:rounded"
+  >
+    <button
+      (click)="displayDetails = false"
+      class="material-symbols-outlined btn btn-sm btn-circle absolute pt-[1px] pr-[1px] top-4 left-3 sm:left-auto sm:right-4"
+    >
+      close
+    </button>
     <!-- name -->
     <h1 class="text-center font-bold text-2xl mb-4">{{ selectedIconTitle }}</h1>
     <div class="flex flex-col sm:flex-row">
       <div class="flex flex-col items-center sm:mr-4">
         <!-- icon -->
         <div class="flex justify-center items-center relative my-2 w-64 h-64 sm:w-auto sm:h-auto">
-          <img src="./assets/checkerboard.png" alt="checkerboard" class="absolute top-0 w-64 brightness-75">
-          <div id="selected-icon" class="flex justify-center items-center z-10 pos-inherit text-white w-64 h-64 sm:h-48 sm:w-48" [innerHTML]="selectedIconCode"></div>
+          <img src="./assets/checkerboard.png" alt="checkerboard" class="absolute top-0 w-64 brightness-75" />
+          <div
+            id="selected-icon"
+            class="flex justify-center items-center z-10 pos-inherit text-white w-64 h-64 sm:h-48 sm:w-48"
+            [innerHTML]="selectedIconCode"
+          ></div>
         </div>
         <!-- icon type -->
         <div class="btn-group mt-4 flex justify-center">
-          <button (click)="changeIconType('css')" class="btn" [ngClass]="{'btn-active': cssSelected}">CSS</button>
-          <button (click)="changeIconType('svg')" class="btn" [ngClass]="{'btn-active': !cssSelected}">SVG</button>
+          <button (click)="changeIconType('css')" class="btn" [ngClass]="{ 'btn-active': cssSelected }">
+            CSS
+          </button>
+          <button (click)="changeIconType('svg')" class="btn" [ngClass]="{ 'btn-active': !cssSelected }">
+            SVG
+          </button>
         </div>
       </div>
       <div class="flex flex-col w-full mt-2 sm:mt-0 sm:ml-4">
         <!-- icon variant -->
-        <label *ngFor="let variant of selectedIconVariants | keyvalue" (click)="changeVariant(variant.key)" for="{{ variant.key }}" class="flex justify-center capitalize w-max my-2 hover:cursor-pointer">
-          <input type="radio" name="icon-choice" id="{{ variant.key }}" class="radio mr-4" [checked]="variant.key == selectedIconVariant" [disabled]="disableTypeChoices"/>
+        <label
+          *ngFor="let variant of selectedIconVariants | keyvalue"
+          (click)="changeVariant(variant.key)"
+          for="{{ variant.key }}"
+          class="flex justify-center capitalize w-max my-2 hover:cursor-pointer"
+        >
+          <input
+            type="radio"
+            name="icon-choice"
+            id="{{ variant.key }}"
+            class="radio mr-4"
+            [checked]="variant.key === selectedIconVariant"
+            [disabled]="disableTypeChoices"
+          />
           {{ variant.key.replace('-', ' ') }}
         </label>
         <!-- color -->
         <label (click)="toggleColor()" *ngIf="cssSelected" for="color" class="flex justify-center w-max my-2">
-          <input type="checkbox" name="color" class="toggle mr-4" [checked]="toggleColorSwitch"/>
+          <input type="checkbox" name="color" class="toggle mr-4" [checked]="toggleColorSwitch" />
           Colored
         </label>
         <!-- wordmark -->
-        <label (click)="toggleWordmark()" for="wordmark" class="flex justify-center w-max my-2 {{ !selectedIconVariants[selectedIconVariant] ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer' }}">
-          <input type="checkbox" name="wordmark" class="toggle mr-4" [checked]="toggleWordmarkSwitch" [disabled]="!selectedIconVariants[selectedIconVariant]"/>
+        <label
+          (click)="toggleWordmark()"
+          for="wordmark"
+          class="flex justify-center w-max my-2 {{
+            !selectedIconVariants[selectedIconVariant] ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer'
+          }}"
+        >
+          <input
+            type="checkbox"
+            name="wordmark"
+            class="toggle mr-4"
+            [checked]="toggleWordmarkSwitch"
+            [disabled]="!selectedIconVariants[selectedIconVariant]"
+          />
           Wordmark
         </label>
         <!-- code snippet -->
         <div class="code-snippet relative w-auto p-4 mt-4 rounded">
-          <button (click)="copyToClipBoard(selectedIconCode)" class="material-symbols-outlined copy rounded-full absolute right-2 top-4 w-7 text-xl hover:cursor-pointer hover:hover-text-color">content_copy</button>
+          <button
+            (click)="copyToClipBoard(selectedIconCode)"
+            class="material-symbols-outlined copy rounded-full absolute right-2 top-4 w-7 text-xl hover:cursor-pointer hover:hover-text-color"
+          >
+            content_copy
+          </button>
           <code>{{ selectedIconCode }}</code>
         </div>
       </div>

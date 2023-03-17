@@ -11,15 +11,16 @@ const mockData = [
   },
   {
     title: 'Vue.js',
-    name: 'vue',
+    name: 'vue'
   }
 ];
 
 const expectedResult = [
   {
     title: 'Angular',
-    name: 'angular' }
-  ];
+    name: 'angular'
+  }
+];
 
 describe('TextFilterPipe', () => {
   it('should filter based on title', () => {
