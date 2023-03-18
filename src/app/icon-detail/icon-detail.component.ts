@@ -32,59 +32,6 @@ export class IconDetailComponent implements OnInit {
   // eslint-disable-next-line no-unused-vars
   constructor(private data: DataService) {}
 
-  createColorPicker() {
-    // clicking an icon somehow triggers this function multiple times
-    // so I had to use a boolean to only run it once
-    if (this.once) {
-      this.pickr = Pickr.create({
-        el: '.color-picker',
-        theme: 'classic',
-        default: this.customColor,
-        comparison: false,
-        appClass: 'border-2 border-[#53565D]',
-        swatches: [
-          '#000000',
-          '#FFFFFF',
-          '#A9A9A9',
-          '#FF0000',
-          '#FFA500',
-          '#FFFF00',
-          '#008000',
-          '#00FFFF',
-          '#0000FF',
-          '#800080',
-          '#FF00FF'
-        ],
-        components: {
-          hue: true,
-          interaction: {
-            hex: true,
-            rgba: true,
-            hsla: true,
-            input: true,
-            clear: true
-          }
-        }
-      });
-
-      this.pickr
-        .on('change', (color: any) => {
-          const hexaColor = color.toHEXA().toString();
-          this.customColor = hexaColor;
-        })
-        .on('clear', () => {
-          this.customColor = '';
-        });
-    }
-    this.once = false;
-  }
-
-  hideDetails() {
-    this.data.changeDisplayDetails(false);
-    this.pickr.destroyAndRemove();
-    this.once = true;
-  }
-
   ngOnInit() {
     this.data.displayDetails.subscribe((v: boolean) => (this.displayDetails = v));
     this.data.selectedIcon.subscribe((v: any) => (this.selectedIcon = v));
@@ -149,5 +96,58 @@ export class IconDetailComponent implements OnInit {
         this.selectedIconVariant
       );
     }
+  }
+
+  createColorPicker() {
+    // clicking an icon somehow triggers this function multiple times
+    // so I had to use a boolean to only run it once
+    if (this.once) {
+      this.pickr = Pickr.create({
+        el: '.color-picker',
+        theme: 'classic',
+        default: this.customColor,
+        comparison: false,
+        appClass: 'border-2 border-[#53565D]',
+        swatches: [
+          '#000000',
+          '#FFFFFF',
+          '#A9A9A9',
+          '#FF0000',
+          '#FFA500',
+          '#FFFF00',
+          '#008000',
+          '#00FFFF',
+          '#0000FF',
+          '#800080',
+          '#FF00FF'
+        ],
+        components: {
+          hue: true,
+          interaction: {
+            hex: true,
+            rgba: true,
+            hsla: true,
+            input: true,
+            clear: true
+          }
+        }
+      });
+
+      this.pickr
+        .on('change', (color: any) => {
+          const hexaColor = color.toHEXA().toString();
+          this.customColor = hexaColor;
+        })
+        .on('clear', () => {
+          this.customColor = '';
+        });
+    }
+    this.once = false;
+  }
+
+  hideDetails() {
+    this.data.changeDisplayDetails(false);
+    this.pickr.destroyAndRemove();
+    this.once = true;
   }
 }
