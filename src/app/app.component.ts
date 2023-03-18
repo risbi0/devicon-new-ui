@@ -14,12 +14,16 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('toTopButton') toTopButton: ElementRef;
 
   cssSetup = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">';
-  discordIconColor = '#A6ADBB';
   hovered = false;
   showToTopButton = false;
 
   theme = localStorage.getItem('theme') || 'dark';
   themeMode = `${this.theme}_mode` || 'dark_mode';
+  // since Devicon doesn't have an icon for Discord,
+  // its color is dynamically changed through its SVG path fill attribute
+  discordDarkTheme = '#A6ADBB';
+  discordLightTheme = '#1F2937';
+  discordIconColor = this.theme === 'dark' ? this.discordDarkTheme : this.discordLightTheme;
 
   // eslint-disable-next-line no-unused-vars
   constructor(private renderer: Renderer2) {}
@@ -62,10 +66,10 @@ export class AppComponent implements AfterViewInit {
   toggleTheme() {
     if (this.theme === 'dark') {
       this.theme = 'light';
-      this.discordIconColor = '#1F2937';
+      this.discordIconColor = this.discordLightTheme;
     } else {
       this.theme = 'dark';
-      this.discordIconColor = '#A6ADBB';
+      this.discordIconColor = this.discordDarkTheme;
     }
     this.themeSymbol.nativeElement.textContent = `${this.theme}_mode`;
     localStorage.setItem('theme', this.theme);
