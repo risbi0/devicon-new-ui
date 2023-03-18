@@ -11,5 +11,6 @@
       "source.fixAll.eslint": true
     },
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "files.associations": { "*.scss": "postcss" }
 }
