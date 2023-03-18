@@ -67,7 +67,6 @@ export class IconDetailComponent implements OnInit {
         }
       });
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       this.pickr.on('change', (color: any) => {
         const hexaColor = color.toHEXA().toString();
         this.customColor = hexaColor;

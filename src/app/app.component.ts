@@ -33,7 +33,6 @@ export class AppComponent implements AfterViewInit {
     const totalVariations = icons.reduce((acc, cur) => acc + cur.css.length + cur.svg.length, 0);
     const duration = 2000;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function animateNumber(obj: any, value: number) {
       const startTime: number = Date.now();
       const step = () => {
