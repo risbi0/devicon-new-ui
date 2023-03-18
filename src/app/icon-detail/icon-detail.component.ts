@@ -26,7 +26,7 @@ export class IconDetailComponent implements OnInit {
   disableTypeChoices: boolean;
   // color picker
   pickr: Pickr;
-  once = true
+  once = true;
   customColor = '';
 
   // eslint-disable-next-line no-unused-vars
@@ -62,25 +62,27 @@ export class IconDetailComponent implements OnInit {
             rgba: true,
             hsla: true,
             input: true,
-            clear: true,
+            clear: true
           }
         }
       });
 
-      this.pickr.on('change', (color: any) => {
-        const hexaColor = color.toHEXA().toString();
-        this.customColor = hexaColor;
-      }).on('clear', () => {
-        this.customColor = '';
-      })
+      this.pickr
+        .on('change', (color: any) => {
+          const hexaColor = color.toHEXA().toString();
+          this.customColor = hexaColor;
+        })
+        .on('clear', () => {
+          this.customColor = '';
+        });
     }
-    this.once = false
+    this.once = false;
   }
 
   hideDetails() {
     this.data.changeDisplayDetails(false);
     this.pickr.destroyAndRemove();
-    this.once = true
+    this.once = true;
   }
 
   ngOnInit() {
