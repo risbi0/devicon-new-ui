@@ -3,7 +3,7 @@
   <div
     (click)="$event.stopPropagation()"
     id="details"
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full p-8 pt-6 theme sm:w-[52rem] sm:h-max sm:rounded"
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full p-8 pt-6 theme sm:w-[54rem] sm:h-max sm:rounded"
   >
     <button
       (click)="hideDetails()"
@@ -14,9 +14,9 @@
     <!-- name -->
     <h1 class="text-center font-bold text-2xl mb-4">{{ selectedIconTitle }}</h1>
     <div class="flex flex-col sm:flex-row">
-      <div class="flex flex-col items-center sm:mr-4">
+      <div class="flex flex-col justify-center items-center sm:mr-4">
         <!-- icon -->
-        <div class="flex justify-center items-center relative my-2 w-64 h-64 sm:w-auto sm:h-auto">
+        <div class="flex justify-center items-center relative w-64 h-64 sm:w-auto sm:h-auto">
           <img src="./assets/checkerboard.png" alt="checkerboard" class="absolute top-0 w-64 brightness-75" />
           <div
             id="selected-icon"
@@ -35,50 +35,64 @@
           </button>
         </div>
       </div>
+      <!-- settings -->
       <div class="flex flex-col w-full mt-2 sm:mt-0 sm:ml-4">
-        <!-- icon version -->
-        <label
-          *ngFor="let version of selectedIconVersions | keyvalue"
-          (click)="changeVersion(version.key)"
-          for="{{ version.key }}"
-          class="flex justify-center capitalize w-max my-2 hover:cursor-pointer"
-        >
-          <input
-            type="radio"
-            name="icon-choice"
-            id="{{ version.key }}"
-            class="radio mr-4"
-            [checked]="version.key === selectedIconVersion"
-            [disabled]="disableTypeChoices"
-          />
-          {{ version.key.replace('-', ' ') }}
-        </label>
-        <!-- color -->
-        <label (click)="toggleColor()" *ngIf="cssSelected" for="color" class="flex justify-center w-max my-2">
-          <input type="checkbox" name="color" class="toggle mr-4" [checked]="toggleColorSwitch" />
-          Colored
-        </label>
-        <div class="flex flex-row items-center my-2">
-          <div class="color-picker"></div>
-          <div class="ml-4">Background Color</div>
+        <div class="flex flex-col sm:flex-row">
+          <!-- versions -->
+          <div class="flex flex-col grow">
+            <p class="font-semibold">Version</p>
+            <label
+              *ngFor="let version of selectedIconVersions | keyvalue"
+              (click)="changeVersion(version.key)"
+              for="{{ version.key }}"
+              class="flex capitalize px-3 py-4 my-1 bg-neutral rounded hover:cursor-pointer"
+            >
+              <input
+                type="radio"
+                name="icon-choice"
+                id="{{ version.key }}"
+                class="radio mr-4"
+                [checked]="version.key === selectedIconVersion"
+                [disabled]="disableTypeChoices"
+              />
+              {{ version.key.replace('-', ' ') }}
+            </label>
+            <!-- wordmark -->
+            <label
+              (click)="toggleWordmark()"
+              for="wordmark"
+              class="flex px-3 py-4 mt-1 bg-neutral rounded {{
+                !selectedIconVersions[selectedIconVersion] ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer'
+              }}"
+            >
+              <input
+                type="checkbox"
+                name="wordmark"
+                class="toggle mr-4"
+                [checked]="toggleWordmarkSwitch"
+                [disabled]="!selectedIconVersions[selectedIconVersion]"
+              />
+              Wordmark
+            </label>
+          </div>
+          <!-- colors -->
+          <div class="flex flex-col grow sm:ml-8">
+            <p class="font-semibold">Color</p>
+            <label
+              (click)="toggleColor()"
+              *ngIf="cssSelected"
+              for="color"
+              class="flex px-3 py-4 my-1 bg-neutral rounded hover:cursor-pointer"
+            >
+              <input type="checkbox" name="color" class="toggle mr-4" [checked]="toggleColorSwitch" />
+              Colored
+            </label>
+            <div class="flex flex-row items-center px-3 h-[56px] mt-1 bg-neutral rounded">
+              <div class="color-picker"></div>
+              <div class="ml-4">Background Color</div>
+            </div>
+          </div>
         </div>
-        <!-- wordmark -->
-        <label
-          (click)="toggleWordmark()"
-          for="wordmark"
-          class="flex justify-center w-max my-2 {{
-            !selectedIconVersions[selectedIconVersion] ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer'
-          }}"
-        >
-          <input
-            type="checkbox"
-            name="wordmark"
-            class="toggle mr-4"
-            [checked]="toggleWordmarkSwitch"
-            [disabled]="!selectedIconVersions[selectedIconVersion]"
-          />
-          Wordmark
-        </label>
         <!-- code snippet -->
         <app-code-snippet [code]="selectedIconCode"></app-code-snippet>
       </div>
