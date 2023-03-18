@@ -36,22 +36,22 @@
         </div>
       </div>
       <div class="flex flex-col w-full mt-2 sm:mt-0 sm:ml-4">
-        <!-- icon variant -->
+        <!-- icon version -->
         <label
-          *ngFor="let variant of selectedIconVariants | keyvalue"
-          (click)="changeVariant(variant.key)"
-          for="{{ variant.key }}"
+          *ngFor="let version of selectedIconVersions | keyvalue"
+          (click)="changeVersion(version.key)"
+          for="{{ version.key }}"
           class="flex justify-center capitalize w-max my-2 hover:cursor-pointer"
         >
           <input
             type="radio"
             name="icon-choice"
-            id="{{ variant.key }}"
+            id="{{ version.key }}"
             class="radio mr-4"
-            [checked]="variant.key === selectedIconVariant"
+            [checked]="version.key === selectedIconVersion"
             [disabled]="disableTypeChoices"
           />
-          {{ variant.key.replace('-', ' ') }}
+          {{ version.key.replace('-', ' ') }}
         </label>
         <!-- color -->
         <label (click)="toggleColor()" *ngIf="cssSelected" for="color" class="flex justify-center w-max my-2">
@@ -67,7 +67,7 @@
           (click)="toggleWordmark()"
           for="wordmark"
           class="flex justify-center w-max my-2 {{
-            !selectedIconVariants[selectedIconVariant] ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer'
+            !selectedIconVersions[selectedIconVersion] ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer'
           }}"
         >
           <input
@@ -75,7 +75,7 @@
             name="wordmark"
             class="toggle mr-4"
             [checked]="toggleWordmarkSwitch"
-            [disabled]="!selectedIconVariants[selectedIconVariant]"
+            [disabled]="!selectedIconVersions[selectedIconVersion]"
           />
           Wordmark
         </label>

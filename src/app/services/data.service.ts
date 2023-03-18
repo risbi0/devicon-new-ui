@@ -14,10 +14,10 @@ export class DataService {
   selectedIconName = this.selectedIconNameSource.asObservable();
   private selectedIconTitleSource = new BehaviorSubject('');
   selectedIconTitle = this.selectedIconTitleSource.asObservable();
-  private selectedIconVariantsSource = new BehaviorSubject({});
-  selectedIconVariants = this.selectedIconVariantsSource.asObservable();
-  private selectedIconVariantSource = new BehaviorSubject('');
-  selectedIconVariant = this.selectedIconVariantSource.asObservable();
+  private selectedIconVersionsSource = new BehaviorSubject({});
+  selectedIconVersions = this.selectedIconVersionsSource.asObservable();
+  private selectedIconVersionSource = new BehaviorSubject('');
+  selectedIconVersion = this.selectedIconVersionSource.asObservable();
   private selectedIconCodeSource = new BehaviorSubject('');
   selectedIconCode = this.selectedIconCodeSource.asObservable();
   // toggles
@@ -41,11 +41,11 @@ export class DataService {
   changeSelectedIconTitle(v: string) {
     this.selectedIconTitleSource.next(v);
   }
-  changeSelectedIconVariants(v: { [key: string]: boolean }) {
-    this.selectedIconVariantsSource.next(v);
+  changeSelectedIconVersions(v: { [key: string]: boolean }) {
+    this.selectedIconVersionsSource.next(v);
   }
-  changeSelectedIconVariant(v: string) {
-    this.selectedIconVariantSource.next(v);
+  changeSelectedIconVersion(v: string) {
+    this.selectedIconVersionSource.next(v);
   }
   changeSelectedIconCode(v: string) {
     this.selectedIconCodeSource.next(v);
@@ -66,35 +66,35 @@ export class DataService {
     this.disableTypeChoicesSource.next(v);
   }
 
-  updateDefaultIconVariants(version: string[]) {
+  updateDefaultIconVersions(versions: string[]) {
     // needs to be alphabetized since the object returned is alphabetized
     // anyway and the default value being set to the first element repects that
-    const iconVariants = ['line', 'original', 'plain'];
+    const iconVersions = ['line', 'original', 'plain'];
     const wordmarkSupport: { [key: string]: boolean } = {};
 
-    // check if variant has its own wordmark/non-wordmark version
-    iconVariants.forEach((variant) => {
-      const grade = Number(version.includes(variant)) + Number(version.includes(`${variant}-wordmark`));
+    // check if version has its own wordmark/non-wordmark version
+    iconVersions.forEach((version) => {
+      const grade = Number(versions.includes(version)) + Number(versions.includes(`${version}-wordmark`));
       if (grade === 2) {
-        wordmarkSupport[variant] = true;
+        wordmarkSupport[version] = true;
       } else if (grade === 1) {
-        wordmarkSupport[variant] = false;
+        wordmarkSupport[version] = false;
       }
     });
 
-    this.changeSelectedIconVariants(wordmarkSupport);
+    this.changeSelectedIconVersions(wordmarkSupport);
     this.changeDisableTypeChoices(Object.keys(wordmarkSupport).length === 1);
   }
 
-  updateDefaultIconVariant(variant: { [key: string]: string }) {
-    this.changeSelectedIconVariant(Object.keys(variant)[0]);
+  updateDefaultIconVersion(version: { [key: string]: string }) {
+    this.changeSelectedIconVersion(Object.keys(version)[0]);
   }
 
-  updateCodeSnippet(colored: string, wordmark: string, isCSS: boolean, name: string, variant: string) {
+  updateCodeSnippet(colored: string, wordmark: string, isCSS: boolean, name: string, version: string) {
     this.changeSelectedIconCode(
       isCSS
-        ? `<i class="devicon-${name}-${variant}${wordmark}${colored}"></i>`
-        : `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${name}/${name}-${variant}${wordmark}.svg"/>`
+        ? `<i class="devicon-${name}-${version}${wordmark}${colored}"></i>`
+        : `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${name}/${name}-${version}${wordmark}.svg"/>`
     );
   }
 }

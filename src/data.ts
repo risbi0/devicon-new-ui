@@ -1,11 +1,11 @@
-type Variant = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark';
+type Version = 'plain' | 'line' | 'original' | 'plain-wordmark' | 'line-wordmark' | 'original-wordmark';
 
 export type IconData = {
   title: string;
   name: string;
   tags: string[];
-  css: Variant[];
-  svg: Variant[];
+  css: Version[];
+  svg: Version[];
 };
 
 type IconDataArray = IconData[];

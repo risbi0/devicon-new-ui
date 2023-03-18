@@ -19,8 +19,8 @@ export class IconDisplayComponent implements OnInit {
   // selected icon details
   selectedIcon: IconData;
   selectedIconName: string;
-  selectedIconVariants: { [key: string]: string };
-  selectedIconVariant: string;
+  selectedIconVersions: { [key: string]: string };
+  selectedIconVersion: string;
   // toggles
   toggleColorSwitch: boolean;
   toggleWordmarkSwitch: boolean;
@@ -34,8 +34,8 @@ export class IconDisplayComponent implements OnInit {
     this.tagChoices = [...new Set(this.icons.flatMap((obj: IconData) => obj.tags))].sort();
     this.data.selectedIcon.subscribe((v: any) => (this.selectedIcon = v));
     this.data.selectedIconName.subscribe((v: string) => (this.selectedIconName = v));
-    this.data.selectedIconVariants.subscribe((v: { [key: string]: string }) => (this.selectedIconVariants = v));
-    this.data.selectedIconVariant.subscribe((v: string) => (this.selectedIconVariant = v));
+    this.data.selectedIconVersions.subscribe((v: { [key: string]: string }) => (this.selectedIconVersions = v));
+    this.data.selectedIconVersion.subscribe((v: string) => (this.selectedIconVersion = v));
     this.data.toggleColorSwitch.subscribe((v: boolean) => (this.toggleColorSwitch = v));
     this.data.toggleWordmarkSwitch.subscribe((v: boolean) => (this.toggleWordmarkSwitch = v));
     this.data.cssSelected.subscribe((v: boolean) => (this.cssSelected = v));
@@ -69,14 +69,14 @@ export class IconDisplayComponent implements OnInit {
         resolve(false);
       }
     }).then(() => {
-      this.data.updateDefaultIconVariants(this.cssSelected ? this.selectedIcon.css : this.selectedIcon.svg);
-      this.data.updateDefaultIconVariant(this.selectedIconVariants);
+      this.data.updateDefaultIconVersions(this.cssSelected ? this.selectedIcon.css : this.selectedIcon.svg);
+      this.data.updateDefaultIconVersion(this.selectedIconVersions);
       this.data.updateCodeSnippet(
         this.toggleColorSwitch ? ' colored' : '',
         this.toggleWordmarkSwitch ? '-wordmark' : '',
         this.cssSelected,
         this.selectedIconName,
-        this.selectedIconVariant
+        this.selectedIconVersion
       );
     });
   }

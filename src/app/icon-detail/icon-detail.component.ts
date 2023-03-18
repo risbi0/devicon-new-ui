@@ -14,8 +14,8 @@ export class IconDetailComponent implements OnInit {
   selectedIcon: IconData;
   selectedIconName: string;
   selectedIconTitle: string;
-  selectedIconVariants: { [key: string]: string };
-  selectedIconVariant: string;
+  selectedIconVersions: { [key: string]: string };
+  selectedIconVersion: string;
   selectedIconCode: string;
   // toggles
   toggleColorSwitch: boolean;
@@ -37,8 +37,8 @@ export class IconDetailComponent implements OnInit {
     this.data.selectedIcon.subscribe((v: any) => (this.selectedIcon = v));
     this.data.selectedIconName.subscribe((v: string) => (this.selectedIconName = v));
     this.data.selectedIconTitle.subscribe((v: string) => (this.selectedIconTitle = v));
-    this.data.selectedIconVariants.subscribe((v: { [key: string]: string }) => (this.selectedIconVariants = v));
-    this.data.selectedIconVariant.subscribe((v: string) => (this.selectedIconVariant = v));
+    this.data.selectedIconVersions.subscribe((v: { [key: string]: string }) => (this.selectedIconVersions = v));
+    this.data.selectedIconVersion.subscribe((v: string) => (this.selectedIconVersion = v));
     this.data.selectedIconCode.subscribe((v: string) => (this.selectedIconCode = v));
     this.data.toggleColorSwitch.subscribe((v: boolean) => (this.toggleColorSwitch = v));
     this.data.toggleWordmarkSwitch.subscribe((v: boolean) => (this.toggleWordmarkSwitch = v));
@@ -50,26 +50,26 @@ export class IconDetailComponent implements OnInit {
     // prevent switching when clicking on active button
     if ((type === 'css' && !this.cssSelected) || (type === 'svg' && this.cssSelected)) {
       this.data.changeCssSelected(!this.cssSelected);
-      this.data.updateDefaultIconVariants(this.cssSelected ? this.selectedIcon.css : this.selectedIcon.svg);
-      this.data.updateDefaultIconVariant(this.selectedIconVariants);
+      this.data.updateDefaultIconVersions(this.cssSelected ? this.selectedIcon.css : this.selectedIcon.svg);
+      this.data.updateDefaultIconVersion(this.selectedIconVersions);
       this.data.updateCodeSnippet(
         this.toggleColorSwitch ? ' colored' : '',
         this.toggleWordmarkSwitch ? '-wordmark' : '',
         this.cssSelected,
         this.selectedIconName,
-        this.selectedIconVariant
+        this.selectedIconVersion
       );
     }
   }
 
-  changeVariant(variant: string) {
-    this.data.changeSelectedIconVariant(variant);
+  changeVersion(version: string) {
+    this.data.changeSelectedIconVersion(version);
     this.data.updateCodeSnippet(
       this.toggleColorSwitch ? ' colored' : '',
       this.toggleWordmarkSwitch ? '-wordmark' : '',
       this.cssSelected,
       this.selectedIconName,
-      this.selectedIconVariant
+      this.selectedIconVersion
     );
   }
 
@@ -80,20 +80,20 @@ export class IconDetailComponent implements OnInit {
       this.toggleWordmarkSwitch ? '-wordmark' : '',
       this.cssSelected,
       this.selectedIconName,
-      this.selectedIconVariant
+      this.selectedIconVersion
     );
   }
 
   toggleWordmark() {
     // enable only when wordmark version exists
-    if (this.selectedIconVariants[this.selectedIconVariant]) {
+    if (this.selectedIconVersions[this.selectedIconVersion]) {
       this.data.changeWordmarkToggle(!this.toggleWordmarkSwitch);
       this.data.updateCodeSnippet(
         this.toggleColorSwitch ? ' colored' : '',
         this.toggleWordmarkSwitch ? '-wordmark' : '',
         this.cssSelected,
         this.selectedIconName,
-        this.selectedIconVariant
+        this.selectedIconVersion
       );
     }
   }
