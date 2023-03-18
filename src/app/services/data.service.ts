@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -91,6 +92,19 @@ export class DataService {
   }
 
   updateCodeSnippet(colored: string, wordmark: string, isCSS: boolean, name: string, version: string) {
+    // override inconsistent naming
+    const plainOverride = ['amazonwebservices', 'appcelerator', 'jamstack', 'k3s', 'pytorch', 'zig'];
+    if (plainOverride.includes(name) && version === 'plain') {
+      wordmark = '-wordmark';
+    }
+    const originalOverride = ['codepen', 'shotgrid', 'sqlalchemy']
+    if (originalOverride.includes(name) && version === 'original' && isCSS) {
+      wordmark = '-wordmark';
+    }
+    if (name === 'tailwindcss' && version === 'original') {
+      wordmark = '-wordmark';
+    }
+
     this.changeSelectedIconCode(
       isCSS
         ? `<i class="devicon-${name}-${version}${wordmark}${colored}"></i>`
