@@ -1,15 +1,12 @@
-<div
-  *ngIf="displayDetails"
-  (click)="displayDetails = false"
-  class="fixed top-0 bg-[rgba(0,0,0,0.5)] w-full h-full"
->
+<div *ngIf="displayDetails" (click)="hideDetails()" class="fixed top-0 bg-[rgba(0,0,0,0.5)] w-full h-full">
+  <ng-container *ngIf="displayDetails ? createColorPicker() : null"></ng-container>
   <div
     (click)="$event.stopPropagation()"
     id="details"
     class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full p-8 pt-6 theme sm:w-[60rem] sm:h-max sm:rounded"
   >
     <button
-      (click)="displayDetails = false"
+      (click)="hideDetails()"
       class="material-symbols-outlined btn btn-sm btn-circle absolute pt-[1px] pr-[1px] top-4 left-3 sm:left-auto sm:right-4"
     >
       close
@@ -24,6 +21,7 @@
           <div
             id="selected-icon"
             class="flex justify-center items-center z-10 pos-inherit text-white w-64 h-64 sm:h-48 sm:w-48"
+            [style.background-color]="customColor"
             [innerHTML]="selectedIconCode"
           ></div>
         </div>
@@ -60,6 +58,10 @@
           <input type="checkbox" name="color" class="toggle mr-4" [checked]="toggleColorSwitch" />
           Colored
         </label>
+        <div class="flex flex-row items-center my-2">
+          <div class="color-picker"></div>
+          <div class="ml-4">Background Color</div>
+        </div>
         <!-- wordmark -->
         <label
           (click)="toggleWordmark()"
