@@ -18,8 +18,8 @@ export class AppComponent implements AfterViewInit {
   hovered = false;
   showToTopButton = false;
 
-  theme: string = localStorage.getItem('theme') || 'dark';
-  themeMode: string = `${this.theme}_mode` || 'dark_mode';
+  theme = localStorage.getItem('theme') || 'dark';
+  themeMode = `${this.theme}_mode` || 'dark_mode';
 
   // eslint-disable-next-line no-unused-vars
   constructor(private renderer: Renderer2) {}

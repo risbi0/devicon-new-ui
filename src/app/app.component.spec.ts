@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { IconDisplayComponent } from './icon-display/icon-display.component';
@@ -21,8 +21,7 @@ describe('AppComponent', () => {
         CodeSnippetComponent,
         TextFilterPipe,
         TagFilterPipe
-      ],
-      teardown: { destroyAfterEach: false }
+      ]
     }).compileComponents();
   });
 
