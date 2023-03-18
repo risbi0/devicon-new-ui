@@ -6,7 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./code-snippet.component.scss']
 })
 export class CodeSnippetComponent {
-  @Input() additionalClass: string;
   @Input() code: string;
 
   copyTooltip: string;
