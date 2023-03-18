@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { icons, IconData } from 'src/data';
 import { DataService } from '../services/data.service';
 
+// sort icons by title
+icons.sort((a, b) => a.title.localeCompare(b.title, 'en', { sensitivity: 'base' }));
+
 @Component({
   selector: 'app-icon-display',
   templateUrl: './icon-display.component.html',
