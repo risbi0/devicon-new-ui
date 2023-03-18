@@ -5,21 +5,31 @@ Prerequisites:
 
 ### Development
 Install dependencies:
-```bash
+```
 npm install
 ```
 
 Build and run app locally:
-```bash
-ng serve
+```
+npm run start
 ```
 
 Run unit tests:
-```bash
-ng test
+```
+npm run test
 ```
 
-Deploy:
-```bash
+Lint:
+```
+npm run lint
+```
+
+Format:
+```
+npm run format
+```
+
+Deploy to gh-pages branch:
+```
 ng deploy --base-href=https://<username>.github.io/<repo-name>/
 ```
