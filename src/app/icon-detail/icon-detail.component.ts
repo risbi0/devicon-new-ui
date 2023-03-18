@@ -92,8 +92,4 @@ export class IconDetailComponent implements OnInit {
       );
     }
   }
-
-  copyToClipBoard(code: string) {
-    navigator.clipboard.writeText(code);
-  }
 }

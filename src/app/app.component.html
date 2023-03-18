@@ -33,15 +33,7 @@
       </div>
     </div>
     <p class="text-center">For CSS class use, paste the code in the &lt;head&gt; of your HTML</p>
-    <div class="code-snippet relative p-4 pr-10 mt-4 rounded w-auto">
-      <button
-        (click)="copyToClipBoard(cssSetup)"
-        class="material-symbols-outlined copy rounded-full absolute right-2 top-4 w-7 text-xl hover:cursor-pointer hover:hover-text-color"
-      >
-        content_copy
-      </button>
-      <code>{{ cssSetup }}</code>
-    </div>
+    <app-code-snippet [additionalClass]="'p-4 pr-10 mt-4'" [code]="cssSetup"></app-code-snippet>
   </header>
 
   <app-icon-display></app-icon-display>

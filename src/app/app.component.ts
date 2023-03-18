@@ -17,6 +17,7 @@ export class AppComponent implements AfterViewInit {
   discordIconColor = '#A6ADBB';
   hovered = false;
   showToTopButton = false;
+
   theme: string = localStorage.getItem('theme') || 'dark';
   themeMode: string = `${this.theme}_mode` || 'dark_mode';
 
@@ -72,9 +73,5 @@ export class AppComponent implements AfterViewInit {
 
   goToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  copyToClipBoard(code: string) {
-    navigator.clipboard.writeText(code);
   }
 }

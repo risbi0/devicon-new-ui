@@ -15,6 +15,19 @@
   transition: '0.2s';
 }
 
+div[data-theme='dark'] {
+  .tooltip:before {
+    border: 1px solid #53565d;
+  }
+}
+
+div[data-theme='light'] {
+  .tooltip:before {
+    border: 1px solid #8f949b;
+    color: #1f2937;
+  }
+}
+
 #selected-icon {
   i {
     @apply text-[192px] sm:text-[144px];

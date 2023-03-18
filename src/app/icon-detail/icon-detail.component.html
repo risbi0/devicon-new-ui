@@ -78,15 +78,7 @@
           Wordmark
         </label>
         <!-- code snippet -->
-        <div class="code-snippet relative w-auto p-4 mt-4 rounded">
-          <button
-            (click)="copyToClipBoard(selectedIconCode)"
-            class="material-symbols-outlined copy rounded-full absolute right-2 top-4 w-7 text-xl hover:cursor-pointer hover:hover-text-color"
-          >
-            content_copy
-          </button>
-          <code>{{ selectedIconCode }}</code>
-        </div>
+        <app-code-snippet [additionalClass]="'p-4 mt-4'" [code]="selectedIconCode"></app-code-snippet>
       </div>
     </div>
   </div>
