@@ -1,4 +1,8 @@
-<div *ngIf="displayDetails" (click)="hideDetails()" class="fixed top-0 bg-[rgba(0,0,0,0.5)] w-full h-full">
+<div
+  *ngIf="displayDetails"
+  (click)="hideDetails()"
+  class="fixed top-0 bg-[rgba(0,0,0,0.5)] w-full h-full z-10 sm:z-0"
+>
   <ng-container *ngIf="displayDetails ? createColorPicker() : null"></ng-container>
   <div
     (click)="$event.stopPropagation()"
@@ -7,7 +11,7 @@
   >
     <button
       (click)="hideDetails()"
-      class="material-symbols-outlined btn btn-sm btn-circle absolute pt-[1px] pr-[1px] top-4 left-3 sm:left-auto sm:right-4"
+      class="material-symbols-outlined btn btn-sm btn-circle absolute pt-[1px] pr-[1px] top-4 right-3 sm:right-4"
     >
       close
     </button>
