@@ -1,5 +1,5 @@
 import Pickr from '@simonwep/pickr';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { IconData } from 'src/data';
 import { DataService } from '../services/data.service';
 
@@ -30,7 +30,7 @@ export class IconDetailComponent implements OnInit {
   customColor = '';
 
   // eslint-disable-next-line no-unused-vars
-  constructor(private data: DataService) {}
+  constructor(private data: DataService, private renderer: Renderer2) {}
 
   ngOnInit() {
     this.data.displayDetails.subscribe((v: boolean) => (this.displayDetails = v));
@@ -149,5 +149,9 @@ export class IconDetailComponent implements OnInit {
     this.data.changeDisplayDetails(false);
     this.pickr.destroyAndRemove();
     this.once = true;
+    // enable scroll on mobile
+    if (/Mobi/i.test(window.navigator.userAgent)) {
+      this.renderer.removeClass(document.body, 'overflow-hidden');
+    }
   }
 }

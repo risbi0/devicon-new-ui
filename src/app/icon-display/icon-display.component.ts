@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { icons, IconData } from 'src/data';
 import { DataService } from '../services/data.service';
 
@@ -28,7 +28,7 @@ export class IconDisplayComponent implements OnInit {
   cssSelected = true;
 
   // eslint-disable-next-line no-unused-vars
-  constructor(private data: DataService) {}
+  constructor(private data: DataService, private renderer: Renderer2) {}
 
   ngOnInit() {
     this.tagChoices = [...new Set(this.icons.flatMap((obj: IconData) => obj.tags))].sort();
@@ -79,5 +79,10 @@ export class IconDisplayComponent implements OnInit {
         this.selectedIconVersion
       );
     });
+
+    // disable scroll on mobile
+    if (/Mobi/i.test(window.navigator.userAgent)) {
+      this.renderer.addClass(document.body, 'overflow-hidden');
+    }
   }
 }
