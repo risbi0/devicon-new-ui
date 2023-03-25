@@ -93,6 +93,10 @@ export class DataService {
 
   updateCodeSnippet(colored: string, wordmark: string, isCSS: boolean, name: string, version: string) {
     // override inconsistent naming
+    const wordmarkOnlyOverride = ['ember', 'knockout', 'less', 'npm'];
+    if (wordmarkOnlyOverride.includes(name)) {
+      wordmark = '-wordmark';
+    }
     const plainOverride = ['amazonwebservices', 'appcelerator', 'jamstack', 'k3s', 'pytorch', 'zig'];
     if (plainOverride.includes(name) && version === 'plain') {
       wordmark = '-wordmark';
