@@ -94,21 +94,18 @@ export class DataService {
   updateCodeSnippet(colored: string, wordmark: string, isCSS: boolean, name: string, version: string) {
     // override inconsistent naming
     const wordmarkOnlyOverride = ['ember', 'knockout', 'less', 'npm'];
-    if (wordmarkOnlyOverride.includes(name)) {
-      wordmark = '-wordmark';
-    }
-    const plainOverride = ['amazonwebservices', 'appcelerator', 'jamstack', 'k3s', 'pytorch', 'zig'];
-    if (plainOverride.includes(name) && version === 'plain') {
-      wordmark = '-wordmark';
-    }
-    const originalOverride = ['shotgrid', 'sqlalchemy'];
-    if (originalOverride.includes(name) && version === 'original' && isCSS) {
-      wordmark = '-wordmark';
-    }
-    if (name === 'codepen' && version === 'original' && !isCSS) {
-      wordmark = '-wordmark';
-    }
-    if (name === 'tailwindcss' && version === 'original') {
+    const plainOverride = ['amazonwebservices', 'appcelerator', 'jamstack', 'k3s', 'pytorch', 'zig']; // original, plain-wordmark
+    const originalOverride = ['tailwindcss']; // plain, original-wordmark
+    const originalCSSOnlyOverride = ['shotgrid', 'sqlalchemy'];
+    const originalSVGOnlyOverride = ['codepen'];
+
+    if (
+      wordmarkOnlyOverride.includes(name) ||
+      (plainOverride.includes(name) && version === 'plain') ||
+      (originalOverride.includes(name) && version === 'original') ||
+      (originalCSSOnlyOverride.includes(name) && version === 'original' && isCSS) ||
+      (originalSVGOnlyOverride.includes(name) && version === 'original' && !isCSS)
+    ) {
       wordmark = '-wordmark';
     }
 
