@@ -52,50 +52,36 @@ export class IconDetailComponent implements OnInit {
       this.data.changeCssSelected(!this.cssSelected);
       this.data.updateDefaultIconVersions(this.cssSelected ? this.selectedIcon.css : this.selectedIcon.svg);
       this.data.updateDefaultIconVersion(this.selectedIconVersions);
-      this.data.updateCodeSnippet(
-        this.toggleColorSwitch ? ' colored' : '',
-        this.toggleWordmarkSwitch ? '-wordmark' : '',
-        this.cssSelected,
-        this.selectedIconName,
-        this.selectedIconVersion
-      );
+      this.updateCode();
     }
   }
 
   changeVersion(version: string) {
     this.data.changeSelectedIconVersion(version);
-    this.data.updateCodeSnippet(
-      this.toggleColorSwitch ? ' colored' : '',
-      this.toggleWordmarkSwitch ? '-wordmark' : '',
-      this.cssSelected,
-      this.selectedIconName,
-      this.selectedIconVersion
-    );
+    this.updateCode();
   }
 
   toggleColor() {
     this.data.changeColorToggle(!this.toggleColorSwitch);
-    this.data.updateCodeSnippet(
-      this.toggleColorSwitch ? ' colored' : '',
-      this.toggleWordmarkSwitch ? '-wordmark' : '',
-      this.cssSelected,
-      this.selectedIconName,
-      this.selectedIconVersion
-    );
+    this.updateCode();
   }
 
   toggleWordmark() {
     // enable only when wordmark version exists
     if (this.selectedIconVersions[this.selectedIconVersion]) {
       this.data.changeWordmarkToggle(!this.toggleWordmarkSwitch);
-      this.data.updateCodeSnippet(
-        this.toggleColorSwitch ? ' colored' : '',
-        this.toggleWordmarkSwitch ? '-wordmark' : '',
-        this.cssSelected,
-        this.selectedIconName,
-        this.selectedIconVersion
-      );
+      this.updateCode();
     }
+  }
+
+  updateCode() {
+    this.data.updateCodeSnippet(
+      this.toggleColorSwitch ? ' colored' : '',
+      this.toggleWordmarkSwitch ? '-wordmark' : '',
+      this.cssSelected,
+      this.selectedIconName,
+      this.selectedIconVersion
+    );
   }
 
   createColorPicker() {
