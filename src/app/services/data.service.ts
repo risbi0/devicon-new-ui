@@ -101,8 +101,11 @@ export class DataService {
     if (plainOverride.includes(name) && version === 'plain') {
       wordmark = '-wordmark';
     }
-    const originalOverride = ['codepen', 'shotgrid', 'sqlalchemy'];
+    const originalOverride = ['shotgrid', 'sqlalchemy'];
     if (originalOverride.includes(name) && version === 'original' && isCSS) {
+      wordmark = '-wordmark';
+    }
+    if (name === 'codepen' && version === 'original' && !isCSS) {
       wordmark = '-wordmark';
     }
     if (name === 'tailwindcss' && version === 'original') {
