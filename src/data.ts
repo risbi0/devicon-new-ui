@@ -652,7 +652,7 @@ export const icons: IconDataArray = [
     title: 'Gentoo Linux',
     name: 'gentoo',
     tags: ['linux', 'distribuition', 'desktop'],
-    css: ['plain-wordmark', 'plain'],
+    css: ['plain', 'plain-wordmark'],
     svg: ['plain', 'plain-wordmark']
   },
   {
