@@ -49,7 +49,9 @@
               *ngFor="let version of selectedIconVersions | keyvalue"
               (click)="changeVersion(version.key)"
               for="{{ version.key }}"
-              class="flex capitalize px-3 py-4 my-1 bg-neutral rounded hover:cursor-pointer"
+              class="flex capitalize px-3 py-4 my-1 bg-neutral rounded {{
+                disableTypeChoices ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer'
+              }}"
             >
               <input
                 type="radio"
