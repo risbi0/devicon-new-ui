@@ -358,7 +358,7 @@ export const icons: IconDataArray = [
     title: 'CodePen',
     name: 'codepen',
     tags: ['social', 'website', 'editor'],
-    css: ['plain', 'plain-wordmark'],
+    css: ['plain'],
     svg: ['plain', 'original-wordmark']
   },
   {
