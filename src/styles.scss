@@ -4,6 +4,8 @@
 
 :root {
   --devicon-color: #70a47c;
+  --dark-neutral: #191c24;
+  --light-neutral: #d8d8d8;
 }
 
 .pos-inherit {
@@ -23,12 +25,30 @@ div[data-theme='dark'] {
   .tooltip:before {
     border: 1px solid #53565d;
   }
+
+  .toggle:not([disabled]):not(:checked) {
+    background-color: var(--devicon-color);
+  }
+  .toggle:checked {
+    --tglbg: var(--devicon-color) !important;
+    background-color: var(--dark-neutral) !important;
+    border-color: var(--dark-neutral);
+  }
 }
 
 div[data-theme='light'] {
   .tooltip:before {
     border: 1px solid #8f949b;
     color: #1f2937;
+  }
+
+  .toggle:not([disabled]):not(:checked) {
+    background-color: var(--devicon-color);
+  }
+  .toggle:checked {
+    --tglbg: var(--devicon-color) !important;
+    background-color: var(--light-neutral) !important;
+    border-color: var(--light-neutral);
   }
 }
 
