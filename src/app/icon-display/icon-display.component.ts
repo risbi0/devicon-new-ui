@@ -47,38 +47,24 @@ export class IconDisplayComponent implements OnInit {
   }
 
   showDetails(icon: IconData) {
+    if (this.toggleWordmarkSwitch) this.data.changeWordmarkToggle(false);
+    if (this.toggleColorSwitch) this.data.changeColorToggle(false);
+
     this.data.changeDisplayDetails(true);
 
     this.data.changeSelectedIcon(icon);
     this.data.changeSelectedIconName(icon.name);
     this.data.changeSelectedIconTitle(icon.title);
 
-    new Promise((resolve) => {
-      // daisyUI toggle component doesn't explicity set the 'checked' attribute
-      // when toggled. The attribute had to be shown first before removing it
-      // again to have it unchecked when selecting other icons
-      if (this.toggleWordmarkSwitch) {
-        this.data.changeWordmarkToggle(true);
-        setTimeout(() => {
-          this.data.changeWordmarkToggle(false);
-          // had to wrap this in a Promise so that succeeding functions
-          // get the updated boolean
-          resolve(true);
-        }, 0);
-      } else {
-        resolve(false);
-      }
-    }).then(() => {
-      this.data.updateDefaultIconVersions(this.cssSelected ? this.selectedIcon.css : this.selectedIcon.svg);
-      this.data.updateDefaultIconVersion(this.selectedIconVersions);
-      this.data.updateCodeSnippet(
-        this.toggleColorSwitch ? ' colored' : '',
-        this.toggleWordmarkSwitch ? '-wordmark' : '',
-        this.cssSelected,
-        this.selectedIconName,
-        this.selectedIconVersion
-      );
-    });
+    this.data.updateDefaultIconVersions(this.cssSelected ? this.selectedIcon.css : this.selectedIcon.svg);
+    this.data.updateDefaultIconVersion(this.selectedIconVersions);
+    this.data.updateCodeSnippet(
+      this.toggleColorSwitch ? ' colored' : '',
+      this.toggleWordmarkSwitch ? '-wordmark' : '',
+      this.cssSelected,
+      this.selectedIconName,
+      this.selectedIconVersion
+    );
 
     // disable scroll on mobile
     if (/Mobi/i.test(window.navigator.userAgent)) {
