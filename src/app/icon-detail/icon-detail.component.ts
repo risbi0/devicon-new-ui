@@ -49,6 +49,8 @@ export class IconDetailComponent implements OnInit {
   changeIconType(type: string) {
     // prevent switching when clicking on active button
     if ((type === 'css' && !this.cssSelected) || (type === 'svg' && this.cssSelected)) {
+      this.toggleColorSwitch = false;
+      this.toggleWordmarkSwitch = false;
       this.data.changeCssSelected(!this.cssSelected);
       this.data.updateDefaultIconVersions(this.cssSelected ? this.selectedIcon.css : this.selectedIcon.svg);
       this.data.updateDefaultIconVersion(this.selectedIconVersions);
