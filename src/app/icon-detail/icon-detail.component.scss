@@ -1,5 +1,4 @@
-.radio:checked,
-.toggle:checked,
+.radio:not([disabled]):checked,
 .btn-active {
   background-color: var(--devicon-color) !important;
 }
