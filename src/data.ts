@@ -873,7 +873,7 @@ export const icons: IconDataArray = [
     svg: ['original', 'original-wordmark', 'plain', 'plain-wordmark']
   },
   {
-    title: 'Javascript',
+    title: 'JavaScript',
     name: 'javascript',
     tags: ['programming', 'language'],
     css: ['plain'],
