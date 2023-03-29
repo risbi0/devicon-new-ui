@@ -628,7 +628,7 @@ export const icons: IconDataArray = [
     svg: ['original', 'original-wordmark', 'plain', 'plain-wordmark']
   },
   {
-    title: 'Framework',
+    title: 'Gatling',
     name: 'gatling',
     tags: ['framework', 'testing'],
     css: ['plain', 'plain-wordmark'],
