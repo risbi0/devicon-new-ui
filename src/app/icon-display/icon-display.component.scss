@@ -7,3 +7,8 @@ main {
     @apply flex items-center text-[172px] sm:text-[104px];
   }
 }
+
+#grid-box:hover {
+  background-color: var(--devicon-color);
+  transition: background-color 0.2s;
+}
