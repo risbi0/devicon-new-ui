@@ -1,6 +1,16 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { icons } from 'src/data';
 
+// set theme if store exists, else use system theme
+let theme: string;
+if (localStorage.getItem('theme')) {
+  theme = localStorage.getItem('theme') as string;
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  theme = 'dark';
+} else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+  theme = 'light';
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,8 +27,8 @@ export class AppComponent implements AfterViewInit {
   hovered = false;
   showToTopButton = false;
 
-  theme = localStorage.getItem('theme') || 'dark';
-  themeMode = `${this.theme}_mode` || 'dark_mode';
+  theme = theme;
+  themeMode = `${this.theme}_mode`;
   // since Devicon doesn't have an icon for Discord,
   // its color is dynamically changed through its SVG path fill attribute
   discordDarkTheme = '#A6ADBB';
