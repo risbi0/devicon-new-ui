@@ -2,3 +2,7 @@
 .btn-active {
   background-color: var(--devicon-color) !important;
 }
+
+.radio:not([disabled]) {
+  border-color: var(--devicon-color);
+}
