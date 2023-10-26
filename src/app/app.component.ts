@@ -52,12 +52,7 @@ export class AppComponent implements AfterViewInit {
       const startTime: number = Date.now();
 
       function ease(t: number) {
-        if (t < 0.5) {
-          return 4 * t * t * t;
-        } else {
-          const f = (2 * t - 2);
-          return 0.5 * f * f * f + 1;
-        }
+        return 0.5 * (Math.sin((t - 0.5) * Math.PI) + 1);
       }
 
       const step = () => {
