@@ -41,16 +41,25 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit() {
     const totalIcons = icons.length;
     const totalVariations = icons.reduce((acc, cur) => acc + cur.css.length + cur.svg.length, 0);
-    const duration = 2000;
+    const duration = 1000;
 
     function animateNumber(obj: any, value: number) {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        obj.textContent = value;
+        return;
+      }
+
       const startTime: number = Date.now();
+
+      function ease(t: number) {
+        return 0.5 * (Math.sin((t - 0.5) * Math.PI) + 1);
+      }
+
       const step = () => {
         // calculate progress since animation started
         const progress = Math.min((Date.now() - startTime) / duration, 1);
         // display current number
-        // eslint-disable-next-line no-param-reassign
-        obj.textContent = Math.floor(progress * value);
+        obj.textContent = Math.floor(ease(progress) * value);
         // continue / stop animation based on progress
         if (progress < 1) {
           window.requestAnimationFrame(step);
